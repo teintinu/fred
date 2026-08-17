@@ -69,9 +69,10 @@ Plano revisado com foco em **validar os riscos técnicos primeiro** (spike P0) a
 - ✅ Aprovar PRD/SPEC/PLAN (v2).
 - ✅ BlackHole 0.7.1 instalado via brew — **requer reboot para ativar o driver**.
 - ✅ Servidor MCP do Xcode criado (`mcp-xcode/`, ferramentas: build, test, run_app, restart_app…).
-- ✅ Script de dev loop `scripts/restart.sh` (kill + build + launch).
-- Criar repositório Git e o scaffold do projeto Xcode (Fase 1).
+- ✅ Script de dev loop `scripts/restart.sh` (kill + build + launch) — validado end-to-end.
+- ✅ Repositório Git + Fase 1: scaffold Xcode via XcodeGen (`project.yml` → `Fred.xcodeproj`), menu bar app compilando e rodando.
 - Executar restante da Fase 0 (spike): WhisperKit, Deepseek (2 modelos), OAuth Google.
+- Fase 2: captura de microfone (AVAudioEngine) + armazenamento local.
 
 ---
 

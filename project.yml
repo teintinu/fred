@@ -1,0 +1,55 @@
+name: Fred
+options:
+  bundleIdPrefix: com.fred
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  Fred:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: Fred
+    info:
+      path: Fred/Info.plist
+      properties:
+        CFBundleDisplayName: Fred
+        CFBundleName: Fred
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSMinimumSystemVersion: "13.0"
+        LSUIElement: true
+        NSMicrophoneUsageDescription: "O Fred usa o microfone para capturar e transcrever suas conversas."
+        NSUserNotificationUsageDescription: "O Fred usa notificações para avisar sobre agendamentos e lembretes."
+        NSHumanReadableCopyright: "© 2026 Fred"
+        NSPrincipalClass: NSApplication
+    entitlements:
+      path: Fred/Fred.entitlements
+      properties:
+        com.apple.security.device.audio-input: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.fred.app
+        PRODUCT_NAME: Fred
+        ENABLE_HARDENED_RUNTIME: NO
+        GENERATE_INFOPLIST_FILE: NO
+
+schemes:
+  Fred:
+    build:
+      targets:
+        Fred: all
+    run:
+      config: Debug
+    archive:
+      config: Release
