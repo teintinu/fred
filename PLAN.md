@@ -70,9 +70,14 @@ Plano revisado com foco em **validar os riscos técnicos primeiro** (spike P0) a
 - ✅ BlackHole 0.7.1 instalado via brew — **requer reboot para ativar o driver**.
 - ✅ Servidor MCP do Xcode criado (`mcp-xcode/`, ferramentas: build, test, run_app, restart_app…).
 - ✅ Script de dev loop `scripts/restart.sh` (kill + build + launch) — validado end-to-end.
-- ✅ Repositório Git + Fase 1: scaffold Xcode via XcodeGen (`project.yml` → `Fred.xcodeproj`), menu bar app compilando e rodando.
-- Executar restante da Fase 0 (spike): WhisperKit, Deepseek (2 modelos), OAuth Google.
-- Fase 2: captura de microfone (AVAudioEngine) + armazenamento local.
+- ✅ Repositório Git + Fase 1: scaffold Xcode via XcodeGen, menu bar app compilando e rodando.
+- ✅ Fases 2-6 implementadas: captura (mic/BlackHole), seleção de app persistida, transcrição local (whisper.cpp), Deepseek (chat+reasoner, anti-injection), Google Calendar (OAuth2 PKCE, confirmação manual), notificações locais.
+- ✅ Fase 7: suíte de **63 testes unitários** (XCTest) com 0 falhas; README atualizado.
+- Pendente de uso real: chave Deepseek, credenciais Google, modelo whisper (script pronto), reboot p/ BlackHole.
+
+## Nota de desvio do plano original
+- Transcrição: WhisperKit (SPM) foi substituído pelo **whisper-cli** (whisper.cpp via brew) atrás do mesmo protocolo `Transcriber` — menos risco de build, mesma qualidade; WhisperKit pode ser plugado depois.
+- Metadados: manifest JSON (atômico) em vez de SQLite no v1 — atrás de `RecordingStore`, trocável.
 
 ---
 

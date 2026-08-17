@@ -7,27 +7,197 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EEECDB3F2BE40DE71188C8C /* EventDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68493D870EAB2E4BEF0BD43 /* EventDraft.swift */; };
+		11696B7BF6AEF9FCFA24BE2D /* ProcessingPipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */; };
+		1931D7FDF6DBBE0C8B7DD3D5 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7085E559AF2C0A8DBD6911 /* HistoryView.swift */; };
+		1B36F903C33FA8620F853BFA /* GoogleOAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */; };
+		306CD197B77E9686EDEAFD74 /* DeepseekClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42729398CC73ADC3F7692B85 /* DeepseekClient.swift */; };
+		3392652E6EFE26345AFFCEF5 /* DraftStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */; };
+		393C8619C583EE8AD3E86DE7 /* RecordingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */; };
+		3C4CBA63E59BECAC962E0A28 /* UNNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B3383D955E60F1049E5230 /* UNNotificationScheduler.swift */; };
+		4F388104D104DDD421EDB518 /* WaveWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */; };
+		56FC49719E2A9F581807E898 /* WhisperCLITranscriberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */; };
+		5C4A7C659BEC8ED9160C7C18 /* NotificationPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D34006C19FB0AA75452D0 /* NotificationPlanner.swift */; };
 		63C442BB1536393494776F45 /* FredApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */; };
+		70140C26E24FCCB609D9BE8E /* GoogleCalendarAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F6C5652296BF5664A5921 /* GoogleCalendarAPI.swift */; };
+		709E560ACEE783B3FCEDB8D8 /* AppSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5BE4B1947ECFF7C1687369 /* AppSourceProvider.swift */; };
+		776DC1D110FD373826345B5B /* AudioCaptureEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF182398A4DA4C7BB41F0D8 /* AudioCaptureEngine.swift */; };
+		7A65736D926024679D2AFC36 /* PromptsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C39EEB7FE43408E125C7882 /* PromptsTests.swift */; };
+		7BD5F14AC7E69A09E4CCD989 /* WhisperCLITranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FB842BE139C4EC7049D785 /* WhisperCLITranscriber.swift */; };
+		86C1169ADB92810B001876D6 /* DeepseekModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D36E9E8C2BB9F8D67000A1 /* DeepseekModels.swift */; };
+		87328C4AA779ED13A91FE8B8 /* AudioDeviceFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DBE8B0AD302968E10FC3E /* AudioDeviceFilterTests.swift */; };
+		911D7DF491013BADC18C907D /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */; };
+		930F025B82AC7CD3B1EEBB21 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A4F679A6B4176896C33E0 /* Recording.swift */; };
+		9C0F905BCEC01FD5173040B2 /* WaveWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */; };
+		A3B8CAA969CFF512C12680D9 /* PKCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF08B3805CA832E8A8F4245 /* PKCE.swift */; };
+		A46A479870A6BA6056CE48DE /* AudioDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */; };
+		A8286CA9C2AE2CBF5AB325CC /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF31532E0E52232FF5987B /* Prompts.swift */; };
+		AA3A0E532114CDD5DC0F0C21 /* DeepseekParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243872B4687525FC98E4DE /* DeepseekParserTests.swift */; };
+		AF6CE8546943C030D464B876 /* DeepseekClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E702A4FE679F4A329F47C78D /* DeepseekClientTests.swift */; };
+		B1C4EBD03E29DAC7C0E40AA4 /* CalendarAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19238A002A4EFBD6475C181 /* CalendarAPITests.swift */; };
+		B359A4D33C5201E04F954BC3 /* PKCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */; };
+		B3BFFDF6D531E53A4C32DB97 /* RecordingStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */; };
+		B8EC816084404DFD11FFA4AF /* SummaryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F00720C6DB6FAE932E874 /* SummaryResult.swift */; };
 		C51F84C9D7EDFBF08BE29916 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61061903758573FDB595D96E /* MenuBarView.swift */; };
+		C6016F46744C4356FE9F822E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DBDD79C10B1AF1CCE59C22 /* PreferencesView.swift */; };
+		C91D83FCDED74B031A27006F /* SummaryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F3C2F95C43633DE978BA55 /* SummaryParser.swift */; };
 		CDC13BC88E014B472B6F3429 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73842097F8BAC3A5EED5C6A9 /* AppState.swift */; };
+		D1285651F2449CFFEFF0EDB7 /* GoogleOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */; };
+		D1713A233928F8F8833916DA /* DraftStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77294F75623F498F08B6E6 /* DraftStore.swift */; };
+		DE33D175FCDD7A89824541AA /* NotificationPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */; };
+		E19C5141B82C6FE7ACD553DC /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE7AA92358DE95228D36F5 /* TestSupport.swift */; };
+		E1B95DE75F2842BFBBFDDF63 /* GoogleOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */; };
+		E5B51A30D5AA0707CD12FB92 /* EventDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */; };
+		FE830B9B901BDDEE9A582E9A /* ProcessingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471175656E756FD1E537BDA2 /* ProcessingPipeline.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		57D95344640ECD78B409D3F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF6396E9B86A52ED02FD7CCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDCD1D8FE65F20A3C0880C98;
+			remoteInfo = Fred;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		08D36E9E8C2BB9F8D67000A1 /* DeepseekModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekModels.swift; sourceTree = "<group>"; };
+		09FB842BE139C4EC7049D785 /* WhisperCLITranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCLITranscriber.swift; sourceTree = "<group>"; };
+		0C39EEB7FE43408E125C7882 /* PromptsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsTests.swift; sourceTree = "<group>"; };
+		0C7085E559AF2C0A8DBD6911 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		17C42A0ADF84AE26A5E89481 /* FredTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FredTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPipelineTests.swift; sourceTree = "<group>"; };
 		2887B81A2211E22FCBA75A05 /* Fred.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fred.entitlements; sourceTree = "<group>"; };
+		2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCLITranscriberTests.swift; sourceTree = "<group>"; };
 		2F25BFFE91AC936C4AE42233 /* Fred.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fred.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		305D34006C19FB0AA75452D0 /* NotificationPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPlanner.swift; sourceTree = "<group>"; };
+		407DBE8B0AD302968E10FC3E /* AudioDeviceFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceFilterTests.swift; sourceTree = "<group>"; };
+		42729398CC73ADC3F7692B85 /* DeepseekClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekClient.swift; sourceTree = "<group>"; };
+		45243872B4687525FC98E4DE /* DeepseekParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekParserTests.swift; sourceTree = "<group>"; };
+		471175656E756FD1E537BDA2 /* ProcessingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPipeline.swift; sourceTree = "<group>"; };
+		4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveWriterTests.swift; sourceTree = "<group>"; };
+		520F6C5652296BF5664A5921 /* GoogleCalendarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCalendarAPI.swift; sourceTree = "<group>"; };
+		5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStoreTests.swift; sourceTree = "<group>"; };
+		5DF08B3805CA832E8A8F4245 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
+		609A4F679A6B4176896C33E0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		61061903758573FDB595D96E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		65CE7AA92358DE95228D36F5 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		66DBDD79C10B1AF1CCE59C22 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		73842097F8BAC3A5EED5C6A9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveWriter.swift; sourceTree = "<group>"; };
+		7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPlannerTests.swift; sourceTree = "<group>"; };
+		7F1F00720C6DB6FAE932E874 /* SummaryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResult.swift; sourceTree = "<group>"; };
+		81B3383D955E60F1049E5230 /* UNNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationScheduler.swift; sourceTree = "<group>"; };
+		8BBF31532E0E52232FF5987B /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 		8FF7266CB4F85103ECF0750D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuth.swift; sourceTree = "<group>"; };
+		9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStoreTests.swift; sourceTree = "<group>"; };
+		A68493D870EAB2E4BEF0BD43 /* EventDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDraft.swift; sourceTree = "<group>"; };
+		AB5BE4B1947ECFF7C1687369 /* AppSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSourceProvider.swift; sourceTree = "<group>"; };
+		BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStore.swift; sourceTree = "<group>"; };
+		C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCETests.swift; sourceTree = "<group>"; };
+		C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDraftTests.swift; sourceTree = "<group>"; };
+		CD77294F75623F498F08B6E6 /* DraftStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStore.swift; sourceTree = "<group>"; };
+		DCF182398A4DA4C7BB41F0D8 /* AudioCaptureEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureEngine.swift; sourceTree = "<group>"; };
+		E19238A002A4EFBD6475C181 /* CalendarAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAPITests.swift; sourceTree = "<group>"; };
+		E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuthService.swift; sourceTree = "<group>"; };
+		E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceProvider.swift; sourceTree = "<group>"; };
+		E702A4FE679F4A329F47C78D /* DeepseekClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekClientTests.swift; sourceTree = "<group>"; };
+		EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuthTests.swift; sourceTree = "<group>"; };
 		F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FredApp.swift; sourceTree = "<group>"; };
+		F3F3C2F95C43633DE978BA55 /* SummaryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		30FA18B121FC3BCE635A9315 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				520F6C5652296BF5664A5921 /* GoogleCalendarAPI.swift */,
+				95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */,
+				E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */,
+				5DF08B3805CA832E8A8F4245 /* PKCE.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		4918B70AF065B0E421A54635 /* Transcription */ = {
+			isa = PBXGroup;
+			children = (
+				09FB842BE139C4EC7049D785 /* WhisperCLITranscriber.swift */,
+			);
+			path = Transcription;
+			sourceTree = "<group>";
+		};
+		4AD5BB424964197A8C7CC476 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */,
+				BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		7BE5A111FD6302B18459D830 = {
 			isa = PBXGroup;
 			children = (
 				D55AFC6B9FF3AC53162E53C6 /* Fred */,
+				9B9FB52D4F9095AF60903A50 /* FredTests */,
 				E834C7C8D51FC10ACB449280 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		851F28DDB66DB065020E468C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A68493D870EAB2E4BEF0BD43 /* EventDraft.swift */,
+				609A4F679A6B4176896C33E0 /* Recording.swift */,
+				7F1F00720C6DB6FAE932E874 /* SummaryResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D54B65C4E8EE9B7225A72FE /* Pipeline */ = {
+			isa = PBXGroup;
+			children = (
+				CD77294F75623F498F08B6E6 /* DraftStore.swift */,
+				471175656E756FD1E537BDA2 /* ProcessingPipeline.swift */,
+			);
+			path = Pipeline;
+			sourceTree = "<group>";
+		};
+		9B9FB52D4F9095AF60903A50 /* FredTests */ = {
+			isa = PBXGroup;
+			children = (
+				407DBE8B0AD302968E10FC3E /* AudioDeviceFilterTests.swift */,
+				E19238A002A4EFBD6475C181 /* CalendarAPITests.swift */,
+				E702A4FE679F4A329F47C78D /* DeepseekClientTests.swift */,
+				45243872B4687525FC98E4DE /* DeepseekParserTests.swift */,
+				9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */,
+				C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */,
+				EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */,
+				7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */,
+				C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */,
+				17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */,
+				0C39EEB7FE43408E125C7882 /* PromptsTests.swift */,
+				5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */,
+				65CE7AA92358DE95228D36F5 /* TestSupport.swift */,
+				4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */,
+				2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */,
+			);
+			path = FredTests;
+			sourceTree = "<group>";
+		};
+		D3F43B6BC1D0C088DD038501 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				AB5BE4B1947ECFF7C1687369 /* AppSourceProvider.swift */,
+				DCF182398A4DA4C7BB41F0D8 /* AudioCaptureEngine.swift */,
+				E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */,
+				748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		D55AFC6B9FF3AC53162E53C6 /* Fred */ = {
@@ -36,23 +206,72 @@
 				73842097F8BAC3A5EED5C6A9 /* AppState.swift */,
 				2887B81A2211E22FCBA75A05 /* Fred.entitlements */,
 				F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */,
+				0C7085E559AF2C0A8DBD6911 /* HistoryView.swift */,
 				8FF7266CB4F85103ECF0750D /* Info.plist */,
 				61061903758573FDB595D96E /* MenuBarView.swift */,
+				66DBDD79C10B1AF1CCE59C22 /* PreferencesView.swift */,
+				D3F43B6BC1D0C088DD038501 /* Audio */,
+				30FA18B121FC3BCE635A9315 /* Calendar */,
+				FED9739468FA1079803E133A /* Deepseek */,
+				851F28DDB66DB065020E468C /* Models */,
+				DACE1CBC543932AC60EAC631 /* Notifications */,
+				8D54B65C4E8EE9B7225A72FE /* Pipeline */,
+				4AD5BB424964197A8C7CC476 /* Storage */,
+				4918B70AF065B0E421A54635 /* Transcription */,
 			);
 			path = Fred;
+			sourceTree = "<group>";
+		};
+		DACE1CBC543932AC60EAC631 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				305D34006C19FB0AA75452D0 /* NotificationPlanner.swift */,
+				81B3383D955E60F1049E5230 /* UNNotificationScheduler.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		E834C7C8D51FC10ACB449280 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				2F25BFFE91AC936C4AE42233 /* Fred.app */,
+				17C42A0ADF84AE26A5E89481 /* FredTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FED9739468FA1079803E133A /* Deepseek */ = {
+			isa = PBXGroup;
+			children = (
+				42729398CC73ADC3F7692B85 /* DeepseekClient.swift */,
+				08D36E9E8C2BB9F8D67000A1 /* DeepseekModels.swift */,
+				8BBF31532E0E52232FF5987B /* Prompts.swift */,
+				F3F3C2F95C43633DE978BA55 /* SummaryParser.swift */,
+			);
+			path = Deepseek;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E1B82835042A74C68E48F91B /* FredTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97534AF1218CE8CAB74B7C58 /* Build configuration list for PBXNativeTarget "FredTests" */;
+			buildPhases = (
+				58D1C8D0904561395093B3D0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				109A7E569B48F0D70986FCEF /* PBXTargetDependency */,
+			);
+			name = FredTests;
+			packageProductDependencies = (
+			);
+			productName = FredTests;
+			productReference = 17C42A0ADF84AE26A5E89481 /* FredTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EDCD1D8FE65F20A3C0880C98 /* Fred */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B58A57D9AF9DB770A5A7D665 /* Build configuration list for PBXNativeTarget "Fred" */;
@@ -79,6 +298,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					E1B82835042A74C68E48F91B = {
+						ProvisioningStyle = Automatic;
+					};
 					EDCD1D8FE65F20A3C0880C98 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -99,22 +321,77 @@
 			projectRoot = "";
 			targets = (
 				EDCD1D8FE65F20A3C0880C98 /* Fred */,
+				E1B82835042A74C68E48F91B /* FredTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		58D1C8D0904561395093B3D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87328C4AA779ED13A91FE8B8 /* AudioDeviceFilterTests.swift in Sources */,
+				B1C4EBD03E29DAC7C0E40AA4 /* CalendarAPITests.swift in Sources */,
+				AF6CE8546943C030D464B876 /* DeepseekClientTests.swift in Sources */,
+				AA3A0E532114CDD5DC0F0C21 /* DeepseekParserTests.swift in Sources */,
+				3392652E6EFE26345AFFCEF5 /* DraftStoreTests.swift in Sources */,
+				E5B51A30D5AA0707CD12FB92 /* EventDraftTests.swift in Sources */,
+				1B36F903C33FA8620F853BFA /* GoogleOAuthTests.swift in Sources */,
+				DE33D175FCDD7A89824541AA /* NotificationPlannerTests.swift in Sources */,
+				B359A4D33C5201E04F954BC3 /* PKCETests.swift in Sources */,
+				11696B7BF6AEF9FCFA24BE2D /* ProcessingPipelineTests.swift in Sources */,
+				7A65736D926024679D2AFC36 /* PromptsTests.swift in Sources */,
+				B3BFFDF6D531E53A4C32DB97 /* RecordingStoreTests.swift in Sources */,
+				E19C5141B82C6FE7ACD553DC /* TestSupport.swift in Sources */,
+				4F388104D104DDD421EDB518 /* WaveWriterTests.swift in Sources */,
+				56FC49719E2A9F581807E898 /* WhisperCLITranscriberTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C53844B107456542EAAFE68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				709E560ACEE783B3FCEDB8D8 /* AppSourceProvider.swift in Sources */,
 				CDC13BC88E014B472B6F3429 /* AppState.swift in Sources */,
+				776DC1D110FD373826345B5B /* AudioCaptureEngine.swift in Sources */,
+				A46A479870A6BA6056CE48DE /* AudioDeviceProvider.swift in Sources */,
+				306CD197B77E9686EDEAFD74 /* DeepseekClient.swift in Sources */,
+				86C1169ADB92810B001876D6 /* DeepseekModels.swift in Sources */,
+				D1713A233928F8F8833916DA /* DraftStore.swift in Sources */,
+				0EEECDB3F2BE40DE71188C8C /* EventDraft.swift in Sources */,
 				63C442BB1536393494776F45 /* FredApp.swift in Sources */,
+				70140C26E24FCCB609D9BE8E /* GoogleCalendarAPI.swift in Sources */,
+				D1285651F2449CFFEFF0EDB7 /* GoogleOAuth.swift in Sources */,
+				E1B95DE75F2842BFBBFDDF63 /* GoogleOAuthService.swift in Sources */,
+				1931D7FDF6DBBE0C8B7DD3D5 /* HistoryView.swift in Sources */,
+				911D7DF491013BADC18C907D /* KeychainStore.swift in Sources */,
 				C51F84C9D7EDFBF08BE29916 /* MenuBarView.swift in Sources */,
+				5C4A7C659BEC8ED9160C7C18 /* NotificationPlanner.swift in Sources */,
+				A3B8CAA969CFF512C12680D9 /* PKCE.swift in Sources */,
+				C6016F46744C4356FE9F822E /* PreferencesView.swift in Sources */,
+				FE830B9B901BDDEE9A582E9A /* ProcessingPipeline.swift in Sources */,
+				A8286CA9C2AE2CBF5AB325CC /* Prompts.swift in Sources */,
+				930F025B82AC7CD3B1EEBB21 /* Recording.swift in Sources */,
+				393C8619C583EE8AD3E86DE7 /* RecordingStore.swift in Sources */,
+				C91D83FCDED74B031A27006F /* SummaryParser.swift in Sources */,
+				B8EC816084404DFD11FFA4AF /* SummaryResult.swift in Sources */,
+				3C4CBA63E59BECAC962E0A28 /* UNNotificationScheduler.swift in Sources */,
+				9C0F905BCEC01FD5173040B2 /* WaveWriter.swift in Sources */,
+				7BD5F14AC7E69A09E4CCD989 /* WhisperCLITranscriber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		109A7E569B48F0D70986FCEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDCD1D8FE65F20A3C0880C98 /* Fred */;
+			targetProxy = 57D95344640ECD78B409D3F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		039B2D9BDD031CA2E1431AD7 /* Release */ = {
@@ -204,6 +481,24 @@
 			};
 			name = Debug;
 		};
+		3835776B5CDAF895FCC32161 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fred.app.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fred.app/Contents/MacOS/Fred";
+			};
+			name = Debug;
+		};
 		74A834088FF7460CC7E6163F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -223,6 +518,24 @@
 				SDKROOT = macosx;
 			};
 			name = Debug;
+		};
+		78D6A5781C8776EE73E79A4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fred.app.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fred.app/Contents/MacOS/Fred";
+			};
+			name = Release;
 		};
 		C8706566BAD9BD663B8AD9D4 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -287,6 +600,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		97534AF1218CE8CAB74B7C58 /* Build configuration list for PBXNativeTarget "FredTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3835776B5CDAF895FCC32161 /* Debug */,
+				78D6A5781C8776EE73E79A4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		B58A57D9AF9DB770A5A7D665 /* Build configuration list for PBXNativeTarget "Fred" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

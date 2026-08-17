@@ -33,6 +33,10 @@ targets:
         NSUserNotificationUsageDescription: "O Fred usa notificações para avisar sobre agendamentos e lembretes."
         NSHumanReadableCopyright: "© 2026 Fred"
         NSPrincipalClass: NSApplication
+        CFBundleURLTypes:
+          - CFBundleURLName: com.fred.app.oauth
+            CFBundleURLSchemes:
+              - com.fred.app
     entitlements:
       path: Fred/Fred.entitlements
       properties:
@@ -44,12 +48,32 @@ targets:
         ENABLE_HARDENED_RUNTIME: NO
         GENERATE_INFOPLIST_FILE: NO
 
+  FredTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: FredTests
+    dependencies:
+      - target: Fred
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Fred.app/Contents/MacOS/Fred"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        PRODUCT_BUNDLE_IDENTIFIER: com.fred.app.tests
+
 schemes:
   Fred:
     build:
       targets:
         Fred: all
+        FredTests: [test]
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - FredTests
     archive:
       config: Release
