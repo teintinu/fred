@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "xcode": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp-xcode/dist/index.js"]
+    }
+  }
+}
