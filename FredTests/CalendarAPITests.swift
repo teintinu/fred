@@ -79,4 +79,59 @@ final class CalendarAPITests: XCTestCase {
             XCTAssertEqual(error as? CalendarAPIError, .http(500))
         }
     }
+
+    // MARK: - Listagem (teste de conexão)
+
+    func testListUpcomingEventsParsesAndSendsQuery() async throws {
+        let api = makeAPI()
+        var captured: URLRequest?
+        URLProtocolMock.handler = { request in
+            captured = request
+            XCTAssertEqual(request.httpMethod, "GET")
+            XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer tok")
+            let components = URLComponents(url: request.url!, resolvingAgainstBaseURL: false)!
+            let items = components.queryItems ?? []
+            func value(_ name: String) -> String? { items.first { $0.name == name }?.value }
+            XCTAssertEqual(value("orderBy"), "startTime")
+            XCTAssertEqual(value("singleEvents"), "true")
+            XCTAssertEqual(value("maxResults"), "10")
+            XCTAssertNotNil(value("timeMin"))
+            let json = """
+            {"items":[
+              {"id":"e1","summary":"Reunião de sync","start":{"dateTime":"2026-08-20T14:00:00-03:00"}},
+              {"id":"e2","summary":null,"start":{"date":"2026-08-21"}}
+            ]}
+            """
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, Data(json.utf8))
+        }
+
+        let events = try await api.listUpcomingEvents()
+        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(events[0].summary, "Reunião de sync")
+        XCTAssertEqual(events[0].start, "2026-08-20T14:00:00-03:00")
+        XCTAssertNil(events[1].summary)
+        XCTAssertEqual(events[1].start, "2026-08-21")
+    }
+
+    func testListUpcomingEventsEmptyAndHTTPErrors() async throws {
+        let api = makeAPI()
+        URLProtocolMock.handler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, Data("{\"items\":[]}".utf8))
+        }
+        let emptyEvents = try await api.listUpcomingEvents()
+        XCTAssertTrue(emptyEvents.isEmpty)
+
+        URLProtocolMock.handler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 401, httpVersion: nil, headerFields: nil)!
+            return (response, Data())
+        }
+        do {
+            _ = try await api.listUpcomingEvents()
+            XCTFail("deveria lançar http(401)")
+        } catch {
+            XCTAssertEqual(error as? CalendarAPIError, .http(401))
+        }
+    }
 }

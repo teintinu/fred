@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB07CD3607BAEB9111EED6E /* FileSecretsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D9FA31B8E2B7B3013174B3 /* FileSecretsStore.swift */; };
 		0EEECDB3F2BE40DE71188C8C /* EventDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68493D870EAB2E4BEF0BD43 /* EventDraft.swift */; };
 		11696B7BF6AEF9FCFA24BE2D /* ProcessingPipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */; };
 		1931D7FDF6DBBE0C8B7DD3D5 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7085E559AF2C0A8DBD6911 /* HistoryView.swift */; };
 		1B36F903C33FA8620F853BFA /* GoogleOAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */; };
+		24541133961C43095D0B57A4 /* GoogleOAuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF853E49A17857A166132BD /* GoogleOAuthServiceTests.swift */; };
+		26AD159C64FF942E15796B20 /* PanelPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91AF003EDC3DCDEF0D0CE7D /* PanelPreferences.swift */; };
+		2D6741964B8C73556779BAB9 /* LiveTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43149FAE9A073D5A0FEBD888 /* LiveTranscriptionService.swift */; };
 		306CD197B77E9686EDEAFD74 /* DeepseekClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42729398CC73ADC3F7692B85 /* DeepseekClient.swift */; };
 		3392652E6EFE26345AFFCEF5 /* DraftStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */; };
 		393C8619C583EE8AD3E86DE7 /* RecordingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */; };
 		3C4CBA63E59BECAC962E0A28 /* UNNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B3383D955E60F1049E5230 /* UNNotificationScheduler.swift */; };
+		3EDE2B76CAA14A15E7CC2431 /* LivePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D31E49F89D20222A07A0F /* LivePanelView.swift */; };
+		3F60E41E8D9E6679BADA776B /* PanelPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE32F401ADF8977C1E0DC9F /* PanelPreferencesTests.swift */; };
 		4F388104D104DDD421EDB518 /* WaveWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */; };
+		538455DF726CE64EC4D05C41 /* SecretMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD411056349F7626546076 /* SecretMigrator.swift */; };
 		56FC49719E2A9F581807E898 /* WhisperCLITranscriberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */; };
 		5C4A7C659BEC8ED9160C7C18 /* NotificationPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D34006C19FB0AA75452D0 /* NotificationPlanner.swift */; };
 		63C442BB1536393494776F45 /* FredApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */; };
@@ -26,18 +33,28 @@
 		7BD5F14AC7E69A09E4CCD989 /* WhisperCLITranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FB842BE139C4EC7049D785 /* WhisperCLITranscriber.swift */; };
 		86C1169ADB92810B001876D6 /* DeepseekModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D36E9E8C2BB9F8D67000A1 /* DeepseekModels.swift */; };
 		87328C4AA779ED13A91FE8B8 /* AudioDeviceFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DBE8B0AD302968E10FC3E /* AudioDeviceFilterTests.swift */; };
+		8CDE17738167032422BD6328 /* LiveTranscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B27A534C486CEF12ECC84 /* LiveTranscriptionServiceTests.swift */; };
 		911D7DF491013BADC18C907D /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */; };
+		9293198106C219F7FDDF8440 /* LoopbackAuthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82858EE65C7D3AD57ECCCD6D /* LoopbackAuthServer.swift */; };
+		92DA34B6154F8B91FE2FF1D3 /* LivePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E11EBA5C3B7E64D41C5E3 /* LivePanelController.swift */; };
 		930F025B82AC7CD3B1EEBB21 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609A4F679A6B4176896C33E0 /* Recording.swift */; };
 		9C0F905BCEC01FD5173040B2 /* WaveWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */; };
+		A2DB9E10D82C0793949A503B /* FredLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8749B7117593BE120F34750 /* FredLoggerTests.swift */; };
 		A3B8CAA969CFF512C12680D9 /* PKCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF08B3805CA832E8A8F4245 /* PKCE.swift */; };
 		A46A479870A6BA6056CE48DE /* AudioDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */; };
 		A8286CA9C2AE2CBF5AB325CC /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF31532E0E52232FF5987B /* Prompts.swift */; };
 		AA3A0E532114CDD5DC0F0C21 /* DeepseekParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243872B4687525FC98E4DE /* DeepseekParserTests.swift */; };
 		AF6CE8546943C030D464B876 /* DeepseekClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E702A4FE679F4A329F47C78D /* DeepseekClientTests.swift */; };
+		B12D33E1A88B27741801F719 /* FileSecretsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23759BBCAEC7C2B46B01F4B /* FileSecretsStoreTests.swift */; };
 		B1C4EBD03E29DAC7C0E40AA4 /* CalendarAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19238A002A4EFBD6475C181 /* CalendarAPITests.swift */; };
 		B359A4D33C5201E04F954BC3 /* PKCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */; };
 		B3BFFDF6D531E53A4C32DB97 /* RecordingStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */; };
+		B5ABD9628BADBA505A41ED60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3CAE9A8D35AF180E26E0ED /* AppDelegate.swift */; };
+		B6937D9EE727EC26076D9238 /* FredWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92362870A809F4CC760DBE19 /* FredWindowController.swift */; };
 		B8EC816084404DFD11FFA4AF /* SummaryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F00720C6DB6FAE932E874 /* SummaryResult.swift */; };
+		BB1CB8464855EB3872DE53EC /* SegmentNamerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB73E671BA221DFDD591111D /* SegmentNamerTests.swift */; };
+		BD03EB7E49F842C88961EB2F /* SecretMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6784536DE54735F3A3A2C1D7 /* SecretMigratorTests.swift */; };
+		BED566DF5A7C15D8D07DF080 /* FredLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAA116404EDA6DB80C1BC6 /* FredLogger.swift */; };
 		C51F84C9D7EDFBF08BE29916 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61061903758573FDB595D96E /* MenuBarView.swift */; };
 		C6016F46744C4356FE9F822E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DBDD79C10B1AF1CCE59C22 /* PreferencesView.swift */; };
 		C91D83FCDED74B031A27006F /* SummaryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F3C2F95C43633DE978BA55 /* SummaryParser.swift */; };
@@ -45,9 +62,11 @@
 		D1285651F2449CFFEFF0EDB7 /* GoogleOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */; };
 		D1713A233928F8F8833916DA /* DraftStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77294F75623F498F08B6E6 /* DraftStore.swift */; };
 		DE33D175FCDD7A89824541AA /* NotificationPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */; };
+		DFF2B612846FBDE4A502DEC2 /* SegmentNamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3837687A7FE69380DFFE3992 /* SegmentNamer.swift */; };
 		E19C5141B82C6FE7ACD553DC /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE7AA92358DE95228D36F5 /* TestSupport.swift */; };
 		E1B95DE75F2842BFBBFDDF63 /* GoogleOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */; };
 		E5B51A30D5AA0707CD12FB92 /* EventDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */; };
+		ED64F61A8D36BBC49D41E858 /* LoopbackAuthServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB12262E0444A4C10F0A1474 /* LoopbackAuthServerTests.swift */; };
 		FE830B9B901BDDEE9A582E9A /* ProcessingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471175656E756FD1E537BDA2 /* ProcessingPipeline.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,44 +89,63 @@
 		17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPipelineTests.swift; sourceTree = "<group>"; };
 		2887B81A2211E22FCBA75A05 /* Fred.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fred.entitlements; sourceTree = "<group>"; };
 		2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCLITranscriberTests.swift; sourceTree = "<group>"; };
+		2CEAA116404EDA6DB80C1BC6 /* FredLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FredLogger.swift; sourceTree = "<group>"; };
 		2F25BFFE91AC936C4AE42233 /* Fred.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fred.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		305D34006C19FB0AA75452D0 /* NotificationPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPlanner.swift; sourceTree = "<group>"; };
+		3837687A7FE69380DFFE3992 /* SegmentNamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentNamer.swift; sourceTree = "<group>"; };
 		407DBE8B0AD302968E10FC3E /* AudioDeviceFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceFilterTests.swift; sourceTree = "<group>"; };
 		42729398CC73ADC3F7692B85 /* DeepseekClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekClient.swift; sourceTree = "<group>"; };
+		43149FAE9A073D5A0FEBD888 /* LiveTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptionService.swift; sourceTree = "<group>"; };
 		45243872B4687525FC98E4DE /* DeepseekParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekParserTests.swift; sourceTree = "<group>"; };
 		471175656E756FD1E537BDA2 /* ProcessingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingPipeline.swift; sourceTree = "<group>"; };
+		4B1B27A534C486CEF12ECC84 /* LiveTranscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptionServiceTests.swift; sourceTree = "<group>"; };
 		4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveWriterTests.swift; sourceTree = "<group>"; };
 		520F6C5652296BF5664A5921 /* GoogleCalendarAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCalendarAPI.swift; sourceTree = "<group>"; };
 		5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStoreTests.swift; sourceTree = "<group>"; };
 		5DF08B3805CA832E8A8F4245 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
+		5FE32F401ADF8977C1E0DC9F /* PanelPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPreferencesTests.swift; sourceTree = "<group>"; };
 		609A4F679A6B4176896C33E0 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		61061903758573FDB595D96E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		65CE7AA92358DE95228D36F5 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		66DBDD79C10B1AF1CCE59C22 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		6784536DE54735F3A3A2C1D7 /* SecretMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretMigratorTests.swift; sourceTree = "<group>"; };
 		73842097F8BAC3A5EED5C6A9 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveWriter.swift; sourceTree = "<group>"; };
 		7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPlannerTests.swift; sourceTree = "<group>"; };
+		7ECD411056349F7626546076 /* SecretMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretMigrator.swift; sourceTree = "<group>"; };
 		7F1F00720C6DB6FAE932E874 /* SummaryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResult.swift; sourceTree = "<group>"; };
 		81B3383D955E60F1049E5230 /* UNNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationScheduler.swift; sourceTree = "<group>"; };
+		82858EE65C7D3AD57ECCCD6D /* LoopbackAuthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopbackAuthServer.swift; sourceTree = "<group>"; };
 		8BBF31532E0E52232FF5987B /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
+		8D3CAE9A8D35AF180E26E0ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF7266CB4F85103ECF0750D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		92362870A809F4CC760DBE19 /* FredWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FredWindowController.swift; sourceTree = "<group>"; };
+		931E11EBA5C3B7E64D41C5E3 /* LivePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePanelController.swift; sourceTree = "<group>"; };
 		95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuth.swift; sourceTree = "<group>"; };
 		9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStoreTests.swift; sourceTree = "<group>"; };
 		A68493D870EAB2E4BEF0BD43 /* EventDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDraft.swift; sourceTree = "<group>"; };
 		AB5BE4B1947ECFF7C1687369 /* AppSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSourceProvider.swift; sourceTree = "<group>"; };
+		B91AF003EDC3DCDEF0D0CE7D /* PanelPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPreferences.swift; sourceTree = "<group>"; };
 		BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStore.swift; sourceTree = "<group>"; };
 		C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCETests.swift; sourceTree = "<group>"; };
 		C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDraftTests.swift; sourceTree = "<group>"; };
+		CAF853E49A17857A166132BD /* GoogleOAuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuthServiceTests.swift; sourceTree = "<group>"; };
 		CD77294F75623F498F08B6E6 /* DraftStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStore.swift; sourceTree = "<group>"; };
+		DB73E671BA221DFDD591111D /* SegmentNamerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentNamerTests.swift; sourceTree = "<group>"; };
 		DCF182398A4DA4C7BB41F0D8 /* AudioCaptureEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureEngine.swift; sourceTree = "<group>"; };
 		E19238A002A4EFBD6475C181 /* CalendarAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAPITests.swift; sourceTree = "<group>"; };
+		E23759BBCAEC7C2B46B01F4B /* FileSecretsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSecretsStoreTests.swift; sourceTree = "<group>"; };
 		E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuthService.swift; sourceTree = "<group>"; };
+		E2D9FA31B8E2B7B3013174B3 /* FileSecretsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSecretsStore.swift; sourceTree = "<group>"; };
 		E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceProvider.swift; sourceTree = "<group>"; };
 		E702A4FE679F4A329F47C78D /* DeepseekClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepseekClientTests.swift; sourceTree = "<group>"; };
 		EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuthTests.swift; sourceTree = "<group>"; };
+		EF8D31E49F89D20222A07A0F /* LivePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePanelView.swift; sourceTree = "<group>"; };
 		F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FredApp.swift; sourceTree = "<group>"; };
 		F3F3C2F95C43633DE978BA55 /* SummaryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryParser.swift; sourceTree = "<group>"; };
+		F8749B7117593BE120F34750 /* FredLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FredLoggerTests.swift; sourceTree = "<group>"; };
+		FB12262E0444A4C10F0A1474 /* LoopbackAuthServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopbackAuthServerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -117,6 +155,7 @@
 				520F6C5652296BF5664A5921 /* GoogleCalendarAPI.swift */,
 				95E75A43C546D1618F597FF0 /* GoogleOAuth.swift */,
 				E278428BAB8A743A9C451947 /* GoogleOAuthService.swift */,
+				82858EE65C7D3AD57ECCCD6D /* LoopbackAuthServer.swift */,
 				5DF08B3805CA832E8A8F4245 /* PKCE.swift */,
 			);
 			path = Calendar;
@@ -133,10 +172,23 @@
 		4AD5BB424964197A8C7CC476 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				E2D9FA31B8E2B7B3013174B3 /* FileSecretsStore.swift */,
 				90A6DBEE5A6B306D49C305F4 /* KeychainStore.swift */,
 				BA22677EBF4DE3DD3D0400F5 /* RecordingStore.swift */,
+				7ECD411056349F7626546076 /* SecretMigrator.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		57F959ED59168F2DF10F2259 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				931E11EBA5C3B7E64D41C5E3 /* LivePanelController.swift */,
+				EF8D31E49F89D20222A07A0F /* LivePanelView.swift */,
+				43149FAE9A073D5A0FEBD888 /* LiveTranscriptionService.swift */,
+				B91AF003EDC3DCDEF0D0CE7D /* PanelPreferences.swift */,
+			);
+			path = Live;
 			sourceTree = "<group>";
 		};
 		7BE5A111FD6302B18459D830 = {
@@ -176,12 +228,20 @@
 				45243872B4687525FC98E4DE /* DeepseekParserTests.swift */,
 				9EA614F9BEA05F8DCF953805 /* DraftStoreTests.swift */,
 				C95EB975B156C1C7FBEFBF8D /* EventDraftTests.swift */,
+				E23759BBCAEC7C2B46B01F4B /* FileSecretsStoreTests.swift */,
+				F8749B7117593BE120F34750 /* FredLoggerTests.swift */,
+				CAF853E49A17857A166132BD /* GoogleOAuthServiceTests.swift */,
 				EB332B193D54E728F28A2AB9 /* GoogleOAuthTests.swift */,
+				4B1B27A534C486CEF12ECC84 /* LiveTranscriptionServiceTests.swift */,
+				FB12262E0444A4C10F0A1474 /* LoopbackAuthServerTests.swift */,
 				7A0E2F3058E0D68FF99C75AC /* NotificationPlannerTests.swift */,
+				5FE32F401ADF8977C1E0DC9F /* PanelPreferencesTests.swift */,
 				C02AA645DAE30D05D6BFC3B6 /* PKCETests.swift */,
 				17D863B7CCE11278C0A54025 /* ProcessingPipelineTests.swift */,
 				0C39EEB7FE43408E125C7882 /* PromptsTests.swift */,
 				5D554A2158CB47C53FCE0AF6 /* RecordingStoreTests.swift */,
+				6784536DE54735F3A3A2C1D7 /* SecretMigratorTests.swift */,
+				DB73E671BA221DFDD591111D /* SegmentNamerTests.swift */,
 				65CE7AA92358DE95228D36F5 /* TestSupport.swift */,
 				4D1E8DF93059EEC9D1260315 /* WaveWriterTests.swift */,
 				2B089315E93CEDC0F74E4C33 /* WhisperCLITranscriberTests.swift */,
@@ -195,6 +255,7 @@
 				AB5BE4B1947ECFF7C1687369 /* AppSourceProvider.swift */,
 				DCF182398A4DA4C7BB41F0D8 /* AudioCaptureEngine.swift */,
 				E3BA50B2E836003CAFF4C63D /* AudioDeviceProvider.swift */,
+				3837687A7FE69380DFFE3992 /* SegmentNamer.swift */,
 				748250B2DBA4C90AEB5AE730 /* WaveWriter.swift */,
 			);
 			path = Audio;
@@ -203,9 +264,11 @@
 		D55AFC6B9FF3AC53162E53C6 /* Fred */ = {
 			isa = PBXGroup;
 			children = (
+				8D3CAE9A8D35AF180E26E0ED /* AppDelegate.swift */,
 				73842097F8BAC3A5EED5C6A9 /* AppState.swift */,
 				2887B81A2211E22FCBA75A05 /* Fred.entitlements */,
 				F2B3039CA9CF1DB47D7C4690 /* FredApp.swift */,
+				92362870A809F4CC760DBE19 /* FredWindowController.swift */,
 				0C7085E559AF2C0A8DBD6911 /* HistoryView.swift */,
 				8FF7266CB4F85103ECF0750D /* Info.plist */,
 				61061903758573FDB595D96E /* MenuBarView.swift */,
@@ -213,10 +276,12 @@
 				D3F43B6BC1D0C088DD038501 /* Audio */,
 				30FA18B121FC3BCE635A9315 /* Calendar */,
 				FED9739468FA1079803E133A /* Deepseek */,
+				57F959ED59168F2DF10F2259 /* Live */,
 				851F28DDB66DB065020E468C /* Models */,
 				DACE1CBC543932AC60EAC631 /* Notifications */,
 				8D54B65C4E8EE9B7225A72FE /* Pipeline */,
 				4AD5BB424964197A8C7CC476 /* Storage */,
+				F02B513C683752DCC2FA2944 /* Support */,
 				4918B70AF065B0E421A54635 /* Transcription */,
 			);
 			path = Fred;
@@ -238,6 +303,14 @@
 				17C42A0ADF84AE26A5E89481 /* FredTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F02B513C683752DCC2FA2944 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				2CEAA116404EDA6DB80C1BC6 /* FredLogger.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		FED9739468FA1079803E133A /* Deepseek */ = {
@@ -337,12 +410,20 @@
 				AA3A0E532114CDD5DC0F0C21 /* DeepseekParserTests.swift in Sources */,
 				3392652E6EFE26345AFFCEF5 /* DraftStoreTests.swift in Sources */,
 				E5B51A30D5AA0707CD12FB92 /* EventDraftTests.swift in Sources */,
+				B12D33E1A88B27741801F719 /* FileSecretsStoreTests.swift in Sources */,
+				A2DB9E10D82C0793949A503B /* FredLoggerTests.swift in Sources */,
+				24541133961C43095D0B57A4 /* GoogleOAuthServiceTests.swift in Sources */,
 				1B36F903C33FA8620F853BFA /* GoogleOAuthTests.swift in Sources */,
+				8CDE17738167032422BD6328 /* LiveTranscriptionServiceTests.swift in Sources */,
+				ED64F61A8D36BBC49D41E858 /* LoopbackAuthServerTests.swift in Sources */,
 				DE33D175FCDD7A89824541AA /* NotificationPlannerTests.swift in Sources */,
 				B359A4D33C5201E04F954BC3 /* PKCETests.swift in Sources */,
+				3F60E41E8D9E6679BADA776B /* PanelPreferencesTests.swift in Sources */,
 				11696B7BF6AEF9FCFA24BE2D /* ProcessingPipelineTests.swift in Sources */,
 				7A65736D926024679D2AFC36 /* PromptsTests.swift in Sources */,
 				B3BFFDF6D531E53A4C32DB97 /* RecordingStoreTests.swift in Sources */,
+				BD03EB7E49F842C88961EB2F /* SecretMigratorTests.swift in Sources */,
+				BB1CB8464855EB3872DE53EC /* SegmentNamerTests.swift in Sources */,
 				E19C5141B82C6FE7ACD553DC /* TestSupport.swift in Sources */,
 				4F388104D104DDD421EDB518 /* WaveWriterTests.swift in Sources */,
 				56FC49719E2A9F581807E898 /* WhisperCLITranscriberTests.swift in Sources */,
@@ -353,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5ABD9628BADBA505A41ED60 /* AppDelegate.swift in Sources */,
 				709E560ACEE783B3FCEDB8D8 /* AppSourceProvider.swift in Sources */,
 				CDC13BC88E014B472B6F3429 /* AppState.swift in Sources */,
 				776DC1D110FD373826345B5B /* AudioCaptureEngine.swift in Sources */,
@@ -361,20 +443,30 @@
 				86C1169ADB92810B001876D6 /* DeepseekModels.swift in Sources */,
 				D1713A233928F8F8833916DA /* DraftStore.swift in Sources */,
 				0EEECDB3F2BE40DE71188C8C /* EventDraft.swift in Sources */,
+				0DB07CD3607BAEB9111EED6E /* FileSecretsStore.swift in Sources */,
 				63C442BB1536393494776F45 /* FredApp.swift in Sources */,
+				BED566DF5A7C15D8D07DF080 /* FredLogger.swift in Sources */,
+				B6937D9EE727EC26076D9238 /* FredWindowController.swift in Sources */,
 				70140C26E24FCCB609D9BE8E /* GoogleCalendarAPI.swift in Sources */,
 				D1285651F2449CFFEFF0EDB7 /* GoogleOAuth.swift in Sources */,
 				E1B95DE75F2842BFBBFDDF63 /* GoogleOAuthService.swift in Sources */,
 				1931D7FDF6DBBE0C8B7DD3D5 /* HistoryView.swift in Sources */,
 				911D7DF491013BADC18C907D /* KeychainStore.swift in Sources */,
+				92DA34B6154F8B91FE2FF1D3 /* LivePanelController.swift in Sources */,
+				3EDE2B76CAA14A15E7CC2431 /* LivePanelView.swift in Sources */,
+				2D6741964B8C73556779BAB9 /* LiveTranscriptionService.swift in Sources */,
+				9293198106C219F7FDDF8440 /* LoopbackAuthServer.swift in Sources */,
 				C51F84C9D7EDFBF08BE29916 /* MenuBarView.swift in Sources */,
 				5C4A7C659BEC8ED9160C7C18 /* NotificationPlanner.swift in Sources */,
 				A3B8CAA969CFF512C12680D9 /* PKCE.swift in Sources */,
+				26AD159C64FF942E15796B20 /* PanelPreferences.swift in Sources */,
 				C6016F46744C4356FE9F822E /* PreferencesView.swift in Sources */,
 				FE830B9B901BDDEE9A582E9A /* ProcessingPipeline.swift in Sources */,
 				A8286CA9C2AE2CBF5AB325CC /* Prompts.swift in Sources */,
 				930F025B82AC7CD3B1EEBB21 /* Recording.swift in Sources */,
 				393C8619C583EE8AD3E86DE7 /* RecordingStore.swift in Sources */,
+				538455DF726CE64EC4D05C41 /* SecretMigrator.swift in Sources */,
+				DFF2B612846FBDE4A502DEC2 /* SegmentNamer.swift in Sources */,
 				C91D83FCDED74B031A27006F /* SummaryParser.swift in Sources */,
 				B8EC816084404DFD11FFA4AF /* SummaryResult.swift in Sources */,
 				3C4CBA63E59BECAC962E0A28 /* UNNotificationScheduler.swift in Sources */,

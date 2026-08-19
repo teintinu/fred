@@ -52,14 +52,19 @@ final class WaveWriter {
         handle.write(header)
     }
 
-    /// Converte um buffer Float32 (mono ou interleaved) em Int16 e grava.
-    func append(floatBuffer: UnsafePointer<Float>, frameCount: Int) throws {
+    /// Converte um buffer Float32 em Int16 com clamping (compartilhado com a captura).
+    static func convertToInt16(_ floats: UnsafePointer<Float>, frameCount: Int) -> [Int16] {
         var samples = [Int16](repeating: 0, count: frameCount)
         for i in 0..<frameCount {
-            let s = max(-1.0, min(1.0, Double(floatBuffer[i])))
+            let s = max(-1.0, min(1.0, Double(floats[i])))
             samples[i] = Int16(s * 32767.0)
         }
-        try append(samples: samples)
+        return samples
+    }
+
+    /// Converte um buffer Float32 (mono ou interleaved) em Int16 e grava.
+    func append(floatBuffer: UnsafePointer<Float>, frameCount: Int) throws {
+        try append(samples: Self.convertToInt16(floatBuffer, frameCount: frameCount))
     }
 
     func append(samples: [Int16]) throws {

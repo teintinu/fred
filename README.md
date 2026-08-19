@@ -24,14 +24,23 @@ fred/
 │   ├── Deepseek/                # prompts anti-injection, parser estrito, cliente
 │   ├── Calendar/                # OAuth2 (PKCE), GoogleCalendarAPI
 │   ├── Notifications/           # planos + UNUserNotificationCenter
-│   └── Pipeline/                # processamento + DraftStore (confirmação manual)
-├── FredTests/                   # 63 testes unitários (XCTest)
+│   ├── Pipeline/                # processamento + DraftStore (confirmação manual)
+│   └── Live/                    # painel ao vivo: transcrição original + resumo PT-BR
+├── FredTests/                   # 78 testes unitários (XCTest)
 ├── mcp-xcode/                   # servidor MCP do Xcode (dev tooling)
 ├── scripts/
 │   ├── restart.sh               # kill + build + launch (dev loop)
 │   └── download-whisper-model.sh
 └── .vscode/mcp.json             # registro do MCP no VS Code
 ```
+
+## Painel ao vivo (⌘L)
+
+- Flutuante: fica **acima de qualquer app** e **acompanha todos os Spaces** (inclusive telas cheias).
+- Ajustes: **tamanho** (redimensionável), **visibilidade** (mostrar/ocultar), **transparência** e **tamanho da fonte** (sliders no painel).
+- Conteúdo: transcrição **no idioma original** (esquerda) e resumo **sempre em PT-BR** (direita), ambos em tempo real.
+- ⚡ Otimização: com o painel oculto, **nenhum processamento em tempo real** é feito (zero chamadas ao whisper/Deepseek).
+- Segmentos de ~12s são transcritos em sequência; o resumo é atualizado com debounce a cada 2 segmentos.
 
 ## Rodar testes
 

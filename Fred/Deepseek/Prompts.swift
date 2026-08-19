@@ -47,4 +47,14 @@ enum FredPrompts {
     static func extractUser(_ transcript: String) -> String {
         transcriptBlock(transcript)
     }
+
+    /// Resumo ao vivo do painel: atualização contínua, curta, sempre PT-BR.
+    static func liveSummarySystem() -> String {
+        """
+        Você é o Fred, um assistente pessoal. Atualize o resumo da conversa EM ANDAMENTO.
+        Escreva SEMPRE em português do Brasil, de forma concisa (até 4 frases).
+        \(guardrails)
+        Responda APENAS com JSON válido: {"summary":"..."}
+        """
+    }
 }

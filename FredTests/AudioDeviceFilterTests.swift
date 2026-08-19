@@ -29,6 +29,30 @@ final class AudioDeviceFilterTests: XCTestCase {
         XCTAssertFalse(AudioDeviceFilter.requiresBluetoothWarning(devices: devices, defaultOutputID: nil))
         XCTAssertFalse(AudioDeviceFilter.requiresBluetoothWarning(devices: devices, defaultOutputID: 999))
     }
+
+    // MARK: - Status do BlackHole
+
+    func testBlackHoleActiveWhenDevicePresent() {
+        XCTAssertEqual(AudioDeviceFilter.blackHoleStatus(devices: devices), .active)
+    }
+
+    func testBlackHoleMissingWithoutDriverOrDevice() {
+        let noBlackHole = devices.filter { !$0.isBlackHole }
+        let nonexistent = ["/nonexistent/BlackHole2ch.driver"]
+        XCTAssertEqual(AudioDeviceFilter.blackHoleStatus(devices: noBlackHole, driverPaths: nonexistent), .missing)
+    }
+
+    func testBlackHoleNeedsRebootWhenDriverInstalledButDeviceAbsent() throws {
+        let noBlackHole = devices.filter { !$0.isBlackHole }
+        let dir = try makeTempDir()
+        defer { removeTempDir(dir) }
+        let fakeDriver = dir.appendingPathComponent("BlackHole2ch.driver")
+        try Data("driver".utf8).write(to: fakeDriver)
+        XCTAssertEqual(
+            AudioDeviceFilter.blackHoleStatus(devices: noBlackHole, driverPaths: [fakeDriver.path]),
+            .needsReboot
+        )
+    }
 }
 
 final class RunningAppsFilterTests: XCTestCase {

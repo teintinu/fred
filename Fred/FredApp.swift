@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct FredApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var appState = AppState()
 
     var body: some Scene {
@@ -11,14 +12,5 @@ struct FredApp: App {
             Image(systemName: appState.isCapturing ? "waveform" : "waveform.slash")
         }
         .menuBarExtraStyle(.menu)
-
-        Window("Histórico", id: "history") {
-            HistoryView(appState: appState)
-        }
-        .defaultSize(width: 780, height: 540)
-
-        Settings {
-            PreferencesView(appState: appState)
-        }
     }
 }

@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MenuBarView: View {
     @ObservedObject var appState: AppState
-    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         Button(appState.isCapturing ? "Parar captura" : "Iniciar captura (microfone)") {
@@ -19,24 +18,37 @@ struct MenuBarView: View {
             }
         }
 
+        Divider()
+
+        Button(appState.panelVisible ? "Ocultar painel ao vivo" : "Mostrar painel ao vivo") {
+            appState.togglePanel()
+        }
+        .keyboardShortcut("l", modifiers: .command)
+
         if appState.bluetoothWarning {
             Text("⚠️ Saída Bluetooth — use a saída embutida ao gravar")
                 .font(.caption)
         }
-        if !appState.blackHoleDetected {
-            Text("ℹ️ BlackHole não detectado — instale para capturar apps")
+        switch appState.blackHoleStatus {
+        case .missing:
+            Text("ℹ️ BlackHole não instalado — capture de apps indisponível")
                 .font(.caption)
+        case .needsReboot:
+            Text("⚠️ BlackHole instalado — reinicie o Mac para ativar")
+                .font(.caption)
+        case .active:
+            EmptyView()
         }
 
         Divider()
 
         Button("Abrir histórico…") {
-            openWindow(id: "history")
+            appState.showHistory()
         }
         .keyboardShortcut("h", modifiers: .command)
 
         Button("Preferências…") {
-            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            appState.showPreferences()
         }
         .keyboardShortcut(",", modifiers: .command)
 

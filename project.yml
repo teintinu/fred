@@ -33,10 +33,6 @@ targets:
         NSUserNotificationUsageDescription: "O Fred usa notificações para avisar sobre agendamentos e lembretes."
         NSHumanReadableCopyright: "© 2026 Fred"
         NSPrincipalClass: NSApplication
-        CFBundleURLTypes:
-          - CFBundleURLName: com.fred.app.oauth
-            CFBundleURLSchemes:
-              - com.fred.app
     entitlements:
       path: Fred/Fred.entitlements
       properties:

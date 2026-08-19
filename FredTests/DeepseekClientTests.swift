@@ -86,4 +86,39 @@ final class DeepseekClientTests: XCTestCase {
             XCTAssertEqual(error as? DeepseekError, .emptyContent)
         }
     }
+
+    func testLiveSummaryUsesChatModelAndParsesSummary() async throws {
+        URLProtocolMock.handler = { request in
+            let body = try JSONDecoder().decode(DeepseekRequest.self, from: URLProtocolMock.bodyData(of: request) ?? Data())
+            XCTAssertEqual(body.model, "deepseek-chat")
+            XCTAssertEqual(body.response_format?.type, "json_object")
+            let payload = DeepseekResponse(
+                choices: [.init(message: .init(content: "{\"summary\":\"resumo ao vivo\"}"))],
+                error: nil
+            )
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, try JSONEncoder().encode(payload))
+        }
+        let client = DeepseekClient(session: .mockSession(), apiKeyProvider: { "k" })
+        let summary = try await client.liveSummary(transcript: "ola")
+        XCTAssertEqual(summary, "resumo ao vivo")
+    }
+
+    func testPingUsesChatWithoutJSONMode() async throws {
+        URLProtocolMock.handler = { request in
+            let body = try JSONDecoder().decode(DeepseekRequest.self, from: URLProtocolMock.bodyData(of: request) ?? Data())
+            XCTAssertEqual(body.model, "deepseek-chat")
+            XCTAssertNil(body.response_format, "ping não usa modo JSON")
+            XCTAssertEqual(body.messages.last?.content, "ping")
+            let payload = DeepseekResponse(
+                choices: [.init(message: .init(content: "  ok  "))],
+                error: nil
+            )
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, try JSONEncoder().encode(payload))
+        }
+        let client = DeepseekClient(session: .mockSession(), apiKeyProvider: { "k" })
+        let reply = try await client.ping()
+        XCTAssertEqual(reply, "ok", "resposta deve vir limpa (trim)")
+    }
 }

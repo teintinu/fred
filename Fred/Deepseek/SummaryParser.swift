@@ -89,4 +89,19 @@ enum SummaryParser {
         let result = try parse(content)
         return (result.proposedEvents, result.followUps)
     }
+
+    /// Resumo ao vivo: extrai apenas o campo `summary` (PT-BR).
+    static func parseLiveSummary(_ content: String) throws -> String {
+        struct RawLiveSummary: Codable {
+            var summary: String?
+        }
+        let cleaned = cleanedContent(content)
+        guard let data = cleaned.data(using: .utf8),
+              let raw = try? JSONDecoder().decode(RawLiveSummary.self, from: data),
+              let summary = raw.summary?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !summary.isEmpty else {
+            throw SummaryParserError.emptySummary
+        }
+        return summary
+    }
 }

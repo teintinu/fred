@@ -80,19 +80,27 @@ final class MockDeepseek: DeepseekProviding {
     var events: [ProposedEvent]
     var followUps: [ProposedFollowUp]
     var error: DeepseekError?
+    var liveSummaryResult: String
+    var pingResult: String
     private(set) var summarizeCallCount = 0
     private(set) var extractCallCount = 0
+    private(set) var liveSummaryCallCount = 0
+    private(set) var pingCallCount = 0
 
     init(
         summaryResult: SummaryResult = .fixture,
         events: [ProposedEvent] = [],
         followUps: [ProposedFollowUp] = [],
-        error: DeepseekError? = nil
+        error: DeepseekError? = nil,
+        liveSummaryResult: String = "resumo ao vivo",
+        pingResult: String = "ok"
     ) {
         self.summaryResult = summaryResult
         self.events = events
         self.followUps = followUps
         self.error = error
+        self.liveSummaryResult = liveSummaryResult
+        self.pingResult = pingResult
     }
 
     func summarize(transcript: String) async throws -> SummaryResult {
@@ -105,6 +113,18 @@ final class MockDeepseek: DeepseekProviding {
         extractCallCount += 1
         if let error { throw error }
         return (events, followUps)
+    }
+
+    func liveSummary(transcript: String) async throws -> String {
+        liveSummaryCallCount += 1
+        if let error { throw error }
+        return liveSummaryResult
+    }
+
+    func ping() async throws -> String {
+        pingCallCount += 1
+        if let error { throw error }
+        return pingResult
     }
 }
 

@@ -1,4 +1,3 @@
-import AuthenticationServices
 import AppKit
 import Foundation
 
@@ -11,16 +10,20 @@ struct GoogleTokens: Codable, Equatable {
 enum GoogleOAuthError: Error, Equatable {
     case noRefreshToken
     case invalidTokenResponse
+    /// Erro retornado pelo endpoint de token (ex.: invalid_grant, redirect_uri_mismatch).
+    case tokenEndpointError(String)
     case authorizationFailed(String)
 }
 
-/// OAuth2 do Google para apps instalados (PKCE + ASWebAuthenticationSession).
-/// Tokens persistidos no Keychain. URLSession injetável para testes.
+/// OAuth2 do Google para apps instalados (Desktop): PKCE + loopback HTTP.
+/// O login abre no NAVEGADOR padrão e o callback volta por http://127.0.0.1:<porta>
+/// (sem scheme custom, sem domínio próprio — nada de com.fred.app).
 final class GoogleOAuth {
     struct Config {
         var clientID: String
-        var clientSecret: String
-        var redirectURI: String
+        /// Opcional: apps instalados com PKCE não precisam de secret.
+        var clientSecret: String? = nil
+        var redirectURI: String = "http://127.0.0.1:5173"
         var tokenURL = URL(string: "https://oauth2.googleapis.com/token")!
         var authURL = URL(string: "https://accounts.google.com/o/oauth2/v2/auth")!
         var scopes = ["openid", "email", "https://www.googleapis.com/auth/calendar.events"]
@@ -30,7 +33,6 @@ final class GoogleOAuth {
     private let session: URLSession
     private let keychain: KeychainStoring
     private let tokensKey = "google.tokens"
-    private lazy var presentationProvider = AuthPresentationProvider()
 
     init(config: Config, session: URLSession = .shared, keychain: KeychainStoring) {
         self.config = config
@@ -55,17 +57,42 @@ final class GoogleOAuth {
         try keychain.set(String(data: data, encoding: .utf8) ?? "", for: tokensKey)
     }
 
-    // MARK: - Fluxo de autorização (UI)
+    // MARK: - Fluxo de autorização (navegador + loopback)
 
     func startAuthorization() async throws {
         let verifier = PKCE.codeVerifier()
         let challenge = PKCE.codeChallenge(verifier: verifier)
         let state = PKCE.state()
+        let port = LoopbackAuthServer.randomPort()
+        let redirect = "http://127.0.0.1:\(port)"
+        let authURL = try authorizationURL(redirectURI: redirect, challenge: challenge, state: state)
 
+        FredLogger.log("startAuthorization: abrindo navegador com \(authURL.absoluteString.replacingOccurrences(of: "%20", with: " "))")
+
+        let server = LoopbackAuthServer(port: port)
+        let (code, returnedState) = try await server.awaitCode(timeout: 120) {
+            NSWorkspace.shared.open(authURL)
+        }
+        FredLogger.log("startAuthorization: callback recebido, stateOK=\(returnedState == state)")
+        guard returnedState == state else {
+            FredLogger.log("startAuthorization: FALHOU — state divergente")
+            throw GoogleOAuthError.authorizationFailed("Estado do callback não confere")
+        }
+        do {
+            let tokens = try await exchange(code: code, verifier: verifier, redirectURI: redirect)
+            FredLogger.log("startAuthorization: exchange OK, refreshToken=\(tokens.refreshToken != nil)")
+        } catch {
+            FredLogger.log("startAuthorization: exchange FALHOU — \(error)")
+            throw error
+        }
+    }
+
+    /// Monta a URL de login (testável).
+    func authorizationURL(redirectURI: String, challenge: String, state: String) throws -> URL {
         var components = URLComponents(url: config.authURL, resolvingAgainstBaseURL: false)!
         components.queryItems = [
             URLQueryItem(name: "client_id", value: config.clientID),
-            URLQueryItem(name: "redirect_uri", value: config.redirectURI),
+            URLQueryItem(name: "redirect_uri", value: redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: config.scopes.joined(separator: " ")),
             URLQueryItem(name: "code_challenge", value: challenge),
@@ -74,42 +101,25 @@ final class GoogleOAuth {
             URLQueryItem(name: "access_type", value: "offline"),
             URLQueryItem(name: "prompt", value: "consent"),
         ]
-        guard let url = components.url else { throw GoogleOAuthError.authorizationFailed("URL inválida") }
-        let callbackScheme = URL(string: config.redirectURI)?.scheme ?? ""
-
-        let code: String = try await withCheckedThrowingContinuation { continuation in
-            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackScheme) { callback, error in
-                if let error {
-                    continuation.resume(throwing: GoogleOAuthError.authorizationFailed(String(describing: error)))
-                    return
-                }
-                guard let callback,
-                      let components = URLComponents(url: callback, resolvingAgainstBaseURL: false),
-                      let code = components.queryItems?.first(where: { $0.name == "code" })?.value,
-                      !code.isEmpty else {
-                    continuation.resume(throwing: GoogleOAuthError.authorizationFailed("sem código no callback"))
-                    return
-                }
-                continuation.resume(returning: code)
-            }
-            session.presentationContextProvider = self.presentationProvider
-            session.prefersEphemeralWebBrowserSession = true
-            session.start()
+        guard let url = components.url else {
+            throw GoogleOAuthError.authorizationFailed("URL de autorização inválida")
         }
-        _ = try await exchange(code: code, verifier: verifier)
+        return url
     }
 
     // MARK: - Tokens (testável)
 
-    func exchange(code: String, verifier: String) async throws -> GoogleTokens {
-        let form = [
+    func exchange(code: String, verifier: String, redirectURI: String? = nil) async throws -> GoogleTokens {
+        var form = [
             "code": code,
             "client_id": config.clientID,
-            "client_secret": config.clientSecret,
-            "redirect_uri": config.redirectURI,
+            "redirect_uri": redirectURI ?? config.redirectURI,
             "grant_type": "authorization_code",
             "code_verifier": verifier,
         ]
+        if let secret = config.clientSecret, !secret.isEmpty {
+            form["client_secret"] = secret
+        }
         let tokens = try await tokenRequest(form: form)
         guard tokens.refreshToken != nil else { throw GoogleOAuthError.noRefreshToken }
         try save(tokens)
@@ -120,12 +130,14 @@ final class GoogleOAuth {
         guard let stored = storedTokens(), let refresh = stored.refreshToken else {
             throw GoogleOAuthError.noRefreshToken
         }
-        let form = [
+        var form = [
             "client_id": config.clientID,
-            "client_secret": config.clientSecret,
             "refresh_token": refresh,
             "grant_type": "refresh_token",
         ]
+        if let secret = config.clientSecret, !secret.isEmpty {
+            form["client_secret"] = secret
+        }
         let fresh = try await tokenRequest(form: form)
         let merged = GoogleTokens(
             accessToken: fresh.accessToken,
@@ -142,6 +154,7 @@ final class GoogleOAuth {
            expiresAt > Date().addingTimeInterval(60) {
             return tokens.accessToken
         }
+        FredLogger.log("accessToken: cache expirado/ausente — refresh")
         return try await refreshAccessToken().accessToken
     }
 
@@ -153,8 +166,21 @@ final class GoogleOAuth {
         components.queryItems = form.map { URLQueryItem(name: $0.key, value: $0.value) }
         request.httpBody = components.query?.data(using: .utf8)
 
+        FredLogger.log("tokenRequest: \(form.keys.sorted().joined(separator: ",")) → \(config.tokenURL.absoluteString)")
         let (data, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+            FredLogger.log("tokenRequest: HTTP \((response as? HTTPURLResponse)?.statusCode ?? -1) body=\(String(data: data, encoding: .utf8) ?? "")")
+            // Tenta extrair o erro detalhado que o Google envia no corpo.
+            struct TokenErrorDTO: Decodable {
+                var error: String?
+                var error_description: String?
+            }
+            if let dto = try? JSONDecoder().decode(TokenErrorDTO.self, from: data) {
+                let detail = [dto.error, dto.error_description]
+                    .compactMap { $0 }
+                    .joined(separator: ": ")
+                if !detail.isEmpty { throw GoogleOAuthError.tokenEndpointError(detail) }
+            }
             throw GoogleOAuthError.invalidTokenResponse
         }
         struct TokenDTO: Decodable {
@@ -170,11 +196,5 @@ final class GoogleOAuth {
             refreshToken: dto.refresh_token,
             expiresAt: dto.expires_in.map { Date().addingTimeInterval(TimeInterval($0)) }
         )
-    }
-}
-
-private final class AuthPresentationProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        NSApp.keyWindow ?? NSApp.windows.first ?? ASPresentationAnchor()
     }
 }

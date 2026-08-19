@@ -32,4 +32,12 @@ final class PromptsTests: XCTestCase {
         XCTAssertTrue(FredPrompts.summarizeUser("x").hasPrefix("<TRANSCRICAO>"))
         XCTAssertTrue(FredPrompts.extractUser("x").hasPrefix("<TRANSCRICAO>"))
     }
+
+    func testLiveSummaryPromptIsPTBRAndJSON() {
+        let prompt = FredPrompts.liveSummarySystem()
+        XCTAssertTrue(prompt.contains("português do Brasil"))
+        XCTAssertTrue(prompt.contains("\"summary\""), "deve exigir o campo summary")
+        XCTAssertTrue(prompt.contains("DADO"), "guardrail anti-injection presente")
+        XCTAssertTrue(prompt.contains("NUNCA"))
+    }
 }

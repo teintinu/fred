@@ -59,4 +59,28 @@ final class DeepseekParserTests: XCTestCase {
         XCTAssertTrue(actions.events.isEmpty)
         XCTAssertTrue(actions.followUps.isEmpty)
     }
+
+    // MARK: - Live summary
+
+    func testParseLiveSummaryValid() throws {
+        let summary = try SummaryParser.parseLiveSummary("{\"summary\":\"Reunião em andamento\"}")
+        XCTAssertEqual(summary, "Reunião em andamento")
+    }
+
+    func testParseLiveSummaryStripsFences() throws {
+        let summary = try SummaryParser.parseLiveSummary("```json\n{\"summary\":\"ok\"}\n```")
+        XCTAssertEqual(summary, "ok")
+    }
+
+    func testParseLiveSummaryEmptyThrows() {
+        XCTAssertThrowsError(try SummaryParser.parseLiveSummary("{\"summary\":\"\"}")) { error in
+            XCTAssertEqual(error as? SummaryParserError, .emptySummary)
+        }
+    }
+
+    func testParseLiveSummaryInvalidJSONThrows() {
+        XCTAssertThrowsError(try SummaryParser.parseLiveSummary("texto solto")) { error in
+            XCTAssertEqual(error as? SummaryParserError, .emptySummary)
+        }
+    }
 }

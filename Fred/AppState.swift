@@ -2,6 +2,7 @@ import AppKit
 import Combine
 import CoreAudio
 import Foundation
+import SwiftUI
 
 /// Estado global do app — orquestra captura, pipeline, apps e preferências.
 @MainActor
@@ -14,24 +15,44 @@ final class AppState: ObservableObject {
     @Published var runningApps: [RunningApp] = []
     @Published var selectedAppBundleID: String?
     @Published var bluetoothWarning = false
-    @Published var blackHoleDetected = false
+    @Published var blackHoleStatus: BlackHoleStatus = .missing
     @Published var lastError: String?
     @Published var whisperStatus: String = ""
     @Published var googleConnected = false
+    @Published var panelVisible = false
+    @Published var deepseekConfigured = false
+    @Published var deepseekTestResult: String?
+    @Published var calendarTestResult: String?
 
     // MARK: - Serviços
 
     let store: RecordingStore
     let draftStore: DraftStore
-    let keychain = KeychainStore()
+    let secrets = FileSecretsStore()
     let capture = AudioCaptureEngine()
     let runningAppsProvider: RunningAppsProviding
     let deviceProvider: AudioDeviceProviding
     let notificationScheduler: NotificationScheduling
+    let liveService: LiveTranscriptionService
+    let panelController: LivePanelController
+    private(set) lazy var historyWindowController = FredWindowController(
+        title: "Histórico",
+        contentSize: NSSize(width: 780, height: 540)
+    ) { [weak self] in
+        guard let self else { return AnyView(EmptyView()) }
+        return AnyView(HistoryView(appState: self))
+    }
+    private(set) lazy var preferencesWindowController = FredWindowController(
+        title: "Preferências",
+        contentSize: NSSize(width: 520, height: 580)
+    ) { [weak self] in
+        guard let self else { return AnyView(EmptyView()) }
+        return AnyView(PreferencesView(appState: self))
+    }
     private(set) lazy var pipeline = ProcessingPipeline(dependencies: .init(
         transcriber: WhisperCLITranscriber(),
-        deepseek: DeepseekClient(apiKeyProvider: { [keychain] in
-            try keychain.get("deepseek.apiKey") ?? ""
+        deepseek: DeepseekClient(apiKeyProvider: { [secrets] in
+            try secrets.get("deepseek.apiKey") ?? ""
         }),
         store: store,
         drafts: draftStore
@@ -55,8 +76,27 @@ final class AppState: ObservableObject {
         self.deviceProvider = deviceProvider
         self.notificationScheduler = notificationScheduler
         self.selectedAppBundleID = UserDefaults.standard.string(forKey: "fred.selectedAppBundleID")
-        GoogleOAuthService.shared = GoogleOAuthService.configured(from: keychain)
+        // Recupera segredos salvos no Keychain por builds anteriores (chave Deepseek etc.).
+        let migrated = SecretMigrator.migrate(from: KeychainStore(), to: secrets)
+        FredLogger.log("AppState.init: migrados=\(migrated) clientID=\((try? secrets.get("google.clientID")) != nil) tokens=\((try? secrets.get("google.tokens")) != nil) deepseek=\((try? secrets.get("deepseek.apiKey")) != nil)")
+        self.liveService = LiveTranscriptionService(dependencies: .init(
+            deepseek: DeepseekClient(apiKeyProvider: { [secrets] in
+                try secrets.get("deepseek.apiKey") ?? ""
+            })
+        ))
+        self.panelController = LivePanelController(liveService: liveService)
+        GoogleOAuthService.shared = GoogleOAuthService.configured(from: secrets)
+        panelController.onVisibilityChanged = { [weak self] visible in
+            self?.panelVisible = visible
+        }
         refresh()
+        // Reabrir o painel DEPOIS do bootstrap: abrir janelas/NSWindow durante a
+        // inicialização do SwiftUI dispara "setting value during update" e aborta o app.
+        Task { @MainActor in
+            if PanelPreferences().isVisible {
+                panelController.show()
+            }
+        }
     }
 
     // MARK: - Refresh
@@ -67,6 +107,7 @@ final class AppState: ObservableObject {
         refreshRunningApps()
         refreshDevices()
         googleConnected = GoogleOAuthService.shared?.isSignedIn() ?? false
+        deepseekConfigured = !((try? secrets.get("deepseek.apiKey"))?.isEmpty ?? true)
     }
 
     func refreshRunningApps() {
@@ -80,7 +121,7 @@ final class AppState: ObservableObject {
 
     func refreshDevices() {
         let devices = deviceProvider.devices()
-        blackHoleDetected = AudioDeviceFilter.blackHole(in: devices) != nil
+        blackHoleStatus = AudioDeviceFilter.blackHoleStatus(devices: devices)
         bluetoothWarning = AudioDeviceFilter.requiresBluetoothWarning(
             devices: devices,
             defaultOutputID: deviceProvider.defaultOutputDeviceID()
@@ -121,6 +162,7 @@ final class AppState: ObservableObject {
         )
         store.add(recording)
         refresh()
+        liveService.reset()
 
         Task {
             do {
@@ -131,7 +173,13 @@ final class AppState: ObservableObject {
                     }
                     deviceID = blackHole.id
                 }
-                try await capture.start(to: url, deviceID: deviceID)
+                // Painel invisível → sem processamento em tempo real (zero custo de CPU/API).
+                let onSegment: ((URL, Int) -> Void)? = panelVisible
+                    ? { [weak liveService] url, _ in
+                        Task { @MainActor in liveService?.enqueueSegment(url) }
+                    }
+                    : nil
+                try await capture.start(to: url, deviceID: deviceID, segmentSeconds: 12, onSegment: onSegment)
                 currentRecordingID = recording.id
                 isCapturing = true
             } catch {
@@ -152,6 +200,7 @@ final class AppState: ObservableObject {
             lastError = "Falha ao finalizar gravação: \(error)"
         }
         isCapturing = false
+        liveService.finish()
         if let id = currentRecordingID, var recording = store.recording(withID: id) {
             recording.endDate = Date()
             recording.durationSeconds = Date().timeIntervalSince(recording.startDate)
@@ -164,6 +213,21 @@ final class AppState: ObservableObject {
 
     func toggleCapture() {
         isCapturing ? stopCapture() : startMicrophoneCapture()
+    }
+
+    /// Mostra/oculta o painel ao vivo (flutuante, todos os Spaces, transparência ajustável).
+    func togglePanel() {
+        panelController.toggle()
+    }
+
+    /// Abre a janela de histórico (controller manual — confiável em apps LSUIElement).
+    func showHistory() {
+        historyWindowController.show()
+    }
+
+    /// Abre a janela de preferências (controller manual).
+    func showPreferences() {
+        preferencesWindowController.show()
     }
 
     // MARK: - Rascunhos / calendário
@@ -198,6 +262,43 @@ final class AppState: ObservableObject {
     }
 
     // MARK: - Utilidades
+
+    /// Testa a chave do Deepseek com uma chamada mínima (ping) à API.
+    func testDeepseek() async {
+        deepseekTestResult = nil
+        let client = DeepseekClient(apiKeyProvider: { [secrets] in
+            try secrets.get("deepseek.apiKey") ?? ""
+        })
+        do {
+            let reply = try await client.ping()
+            deepseekTestResult = "✅ OK — resposta da API: \(reply)"
+        } catch {
+            deepseekTestResult = "❌ Falha: \(error)"
+        }
+    }
+
+    /// Testa a conexão com o Google Calendar listando os próximos eventos.
+    func testCalendarConnection() async {
+        calendarTestResult = nil
+        guard let calendar = GoogleOAuthService.shared?.calendarAPI() else {
+            calendarTestResult = "❌ Google Calendar não configurado."
+            return
+        }
+        do {
+            let events = try await calendar.listUpcomingEvents(maxResults: 5)
+            if events.isEmpty {
+                calendarTestResult = "✅ Conectado — sem eventos próximos."
+            } else {
+                let lines = events.prefix(5).map { event in
+                    let title = event.summary ?? "(sem título)"
+                    return "• \(title) — \(event.start ?? "")"
+                }.joined(separator: "\n")
+                calendarTestResult = "✅ Conectado — próximos eventos:\n\(lines)"
+            }
+        } catch {
+            calendarTestResult = "❌ Falha: \(error)"
+        }
+    }
 
     func checkWhisper() {
         let binary = ProcessInfo.processInfo.environment["WHISPER_CLI_PATH"] ?? "/opt/homebrew/bin/whisper-cli"

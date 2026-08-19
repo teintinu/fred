@@ -10,6 +10,10 @@ enum DeepseekError: Error, Equatable {
 protocol DeepseekProviding {
     func summarize(transcript: String) async throws -> SummaryResult
     func extractActions(transcript: String) async throws -> (events: [ProposedEvent], followUps: [ProposedFollowUp])
+    /// Resumo ao vivo (PT-BR, curto) para o painel em tempo real.
+    func liveSummary(transcript: String) async throws -> String
+    /// Chamada mínima para testar a conectividade/configuração da API.
+    func ping() async throws -> String
 }
 
 /// Cliente da API do Deepseek (compatível com OpenAI).
@@ -42,6 +46,26 @@ final class DeepseekClient: DeepseekProviding {
             json: true
         )
         return try SummaryParser.parseActions(content)
+    }
+
+    func liveSummary(transcript: String) async throws -> String {
+        let content = try await request(
+            model: .chat,
+            system: FredPrompts.liveSummarySystem(),
+            user: FredPrompts.summarizeUser(transcript),
+            json: true
+        )
+        return try SummaryParser.parseLiveSummary(content)
+    }
+
+    func ping() async throws -> String {
+        let content = try await request(
+            model: .chat,
+            system: "Você é um assistente de teste de conectividade. Responda com UMA palavra: 'ok'.",
+            user: "ping",
+            json: false
+        )
+        return content.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func request(model: DeepseekModel, system: String, user: String, json: Bool) async throws -> String {

@@ -72,7 +72,8 @@ Plano revisado com foco em **validar os riscos técnicos primeiro** (spike P0) a
 - ✅ Script de dev loop `scripts/restart.sh` (kill + build + launch) — validado end-to-end.
 - ✅ Repositório Git + Fase 1: scaffold Xcode via XcodeGen, menu bar app compilando e rodando.
 - ✅ Fases 2-6 implementadas: captura (mic/BlackHole), seleção de app persistida, transcrição local (whisper.cpp), Deepseek (chat+reasoner, anti-injection), Google Calendar (OAuth2 PKCE, confirmação manual), notificações locais.
-- ✅ Fase 7: suíte de **63 testes unitários** (XCTest) com 0 falhas; README atualizado.
+- ✅ Fase 7: suíte de **78 testes unitários** (XCTest) com 0 falhas; README atualizado.
+- ✅ Painel ao vivo (HUD): flutuante (nível `.floating`), presente em todos os Spaces (`.canJoinAllSpaces` + `.fullScreenAuxiliary`), redimensionável, com sliders de transparência e fonte; transcrição no idioma original à esquerda e resumo PT-BR à direita, em tempo real (segmentos de 12s + debounce de resumo); **painel oculto = zero processamento em tempo real**.
 - Pendente de uso real: chave Deepseek, credenciais Google, modelo whisper (script pronto), reboot p/ BlackHole.
 
 ## Nota de desvio do plano original

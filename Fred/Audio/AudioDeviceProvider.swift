@@ -16,14 +16,37 @@ protocol AudioDeviceProviding {
     func defaultOutputDeviceID() -> UInt32?
 }
 
+/// Estado do BlackHole no sistema.
+enum BlackHoleStatus: Equatable {
+    case active      // dispositivo presente no CoreAudio
+    case needsReboot // driver instalado em disco, mas não carregado (reiniciar)
+    case missing     // nem driver instalado
+}
+
 /// Filtros puros — testáveis sem CoreAudio.
 enum AudioDeviceFilter {
+    static let blackHoleDriverPaths = [
+        "/Library/Audio/Plug-Ins/HAL/BlackHole2ch.driver",
+        "/Library/Audio/Plug-Ins/HAL/BlackHole16ch.driver",
+    ]
+
     static func inputs(_ devices: [AudioDevice]) -> [AudioDevice] {
         devices.filter(\.isInput)
     }
 
     static func blackHole(in devices: [AudioDevice]) -> AudioDevice? {
         devices.first(where: \.isBlackHole)
+    }
+
+    /// Classifica o estado do BlackHole combinando dispositivos carregados
+    /// com a presença do driver em disco.
+    static func blackHoleStatus(
+        devices: [AudioDevice],
+        driverPaths: [String] = blackHoleDriverPaths
+    ) -> BlackHoleStatus {
+        if blackHole(in: devices) != nil { return .active }
+        let driverExists = driverPaths.contains { FileManager.default.fileExists(atPath: $0) }
+        return driverExists ? .needsReboot : .missing
     }
 
     /// True se o dispositivo de saída padrão for Bluetooth (risco de drift com BlackHole).
